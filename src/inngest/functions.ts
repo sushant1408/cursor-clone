@@ -1,7 +1,8 @@
-import { generateText } from "ai";
-import { inngest } from "./client";
 import { anthropic } from "@ai-sdk/anthropic";
+import { generateText } from "ai";
+
 import { firecrawl } from "@/lib/firecrawl";
+import { inngest } from "@/inngest/client";
 
 const URL_REGEX = /https?:\/\/[^\s]+/g;
 
@@ -34,6 +35,11 @@ export const demoGenerate = inngest.createFunction(
       return await generateText({
         model: anthropic("claude-3-haiku-20240307"),
         prompt: finalPrompt,
+        experimental_telemetry: {
+          isEnabled: true,
+          recordOutputs: true,
+          recordInputs: true,
+        }
       });
     });
   },
