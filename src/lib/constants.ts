@@ -1,0 +1,1 @@
+export const DEFAULT_PROJECTS = 6;
