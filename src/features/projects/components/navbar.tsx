@@ -21,12 +21,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Id } from "@/convex/_generated/dataModel";
 import {
   useProject,
   useRenameProject,
 } from "@/features/projects/hooks/use-projects";
 import { cn } from "@/lib/utils";
-import { Id } from "../../../../convex/_generated/dataModel";
 
 interface NavbarProps {
   projectId: Id<"projects">;
@@ -39,7 +39,7 @@ const font = Poppins({
 
 function Navbar({ projectId }: NavbarProps) {
   const project = useProject(projectId);
-  const renameProject = useRenameProject(projectId);
+  const renameProject = useRenameProject();
 
   const [isRenaming, setIsRenaming] = useState(false);
   const [name, setName] = useState("");

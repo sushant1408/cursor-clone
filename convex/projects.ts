@@ -1,7 +1,7 @@
 import { v } from "convex/values";
 
-import { mutation, query } from "./_generated/server";
-import { verifyAuth } from "./auth";
+import { mutation, query } from "@/convex/_generated/server";
+import { verifyAuth } from "@/convex/auth";
 
 export const create = mutation({
   args: {
@@ -27,13 +27,13 @@ export const getPartial = query({
   handler: async (ctx, args) => {
     const identity = await verifyAuth(ctx);
 
-    const query = await ctx.db
+    const projects = await ctx.db
       .query("projects")
       .withIndex("by_owner", (query) => query.eq("ownerId", identity.subject))
       .order("desc")
       .take(args.limit);
 
-    return query;
+    return projects;
   },
 });
 
@@ -42,13 +42,13 @@ export const get = query({
   handler: async (ctx) => {
     const identity = await verifyAuth(ctx);
 
-    const query = await ctx.db
+    const projects = await ctx.db
       .query("projects")
       .withIndex("by_owner", (query) => query.eq("ownerId", identity.subject))
       .order("desc")
       .collect();
 
-    return query;
+    return projects;
   },
 });
 

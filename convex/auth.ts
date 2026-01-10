@@ -1,4 +1,4 @@
-import type { MutationCtx, QueryCtx } from "./_generated/server";
+import type { MutationCtx, QueryCtx } from "@/convex/_generated/server";
 
 async function verifyAuth(ctx: QueryCtx | MutationCtx) {
   const identity = await ctx.auth.getUserIdentity();

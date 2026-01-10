@@ -1,5 +1,5 @@
+import { Id } from "@/convex/_generated/dataModel";
 import { ProjectIdLayout } from "@/features/projects/components/project-id-layout";
-import { Id } from "../../../../convex/_generated/dataModel";
 
 export default async function Layout({
   children,
