@@ -1,5 +1,5 @@
 import { ProjectsView } from "@/features/projects/components/projects-view";
 
-export default function Home() {
+export default function HomePage() {
   return <ProjectsView />;
 }
