@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { AlertCircleIcon, ArrowRightIcon, GlobeIcon } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { AlertCircleIcon, ArrowRightIcon, GlobeIcon } from "lucide-react";
+import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
+import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import { Spinner } from "@/components/ui/spinner";
+import { Doc } from "@/convex/_generated/dataModel";
 import { useProjectsPartial } from "@/features/projects/hooks/use-projects";
 import { DEFAULT_PROJECTS } from "@/lib/constants";
-import { Doc } from "../../../../convex/_generated/dataModel";
-import { Button } from "@/components/ui/button";
 
 const formatTimestamp = (timestamp: number) => {
   return formatDistanceToNow(new Date(timestamp), {

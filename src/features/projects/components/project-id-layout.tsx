@@ -2,14 +2,8 @@
 
 import { Allotment } from "allotment";
 
+import { Id } from "@/convex/_generated/dataModel";
 import { Navbar } from "@/features/projects/components/navbar";
-import {
-  DEFAULT_CONVERSATION_SIDEBAR_WIDTH,
-  DEFAULT_MAIN_SIZE,
-  MAX_SIDEBAR_WIDTH,
-  MIN_SIDEBAR_WIDTH,
-} from "@/lib/constants";
-import { Id } from "../../../../convex/_generated/dataModel";
 
 import "allotment/dist/style.css";
 
@@ -17,6 +11,11 @@ interface ProjectIdLayoutProps {
   children: React.ReactNode;
   projectId: Id<"projects">;
 }
+
+const MIN_SIDEBAR_WIDTH = 200;
+const MAX_SIDEBAR_WIDTH = 800;
+const DEFAULT_CONVERSATION_SIDEBAR_WIDTH = 400;
+const DEFAULT_MAIN_SIZE = 1000;
 
 function ProjectIdLayout({ children, projectId }: ProjectIdLayoutProps) {
   return (

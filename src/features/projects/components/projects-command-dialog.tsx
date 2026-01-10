@@ -12,8 +12,8 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Spinner } from "@/components/ui/spinner";
+import { Doc, Id } from "@/convex/_generated/dataModel";
 import { useProjects } from "@/features/projects/hooks/use-projects";
-import { Doc, Id } from "../../../../convex/_generated/dataModel";
 
 interface ProjectsCommandDialogProps {
   open: boolean;

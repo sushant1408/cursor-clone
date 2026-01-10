@@ -1,6 +1,1 @@
 export const DEFAULT_PROJECTS = 6;
-
-export const MIN_SIDEBAR_WIDTH = 200;
-export const MAX_SIDEBAR_WIDTH = 800;
-export const DEFAULT_CONVERSATION_SIDEBAR_WIDTH = 400;
-export const DEFAULT_MAIN_SIZE = 1000;
