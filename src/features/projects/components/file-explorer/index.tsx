@@ -21,7 +21,7 @@ import { useProject } from "@/features/projects/hooks/use-projects";
 import { cn } from "@/lib/utils";
 
 function FileExplorer({ projectId }: { projectId: Id<"projects"> }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [collapseKey, setCollapseKey] = useState(0);
   const [creating, setCreating] = useState<"file" | "folder" | null>(null);
 
