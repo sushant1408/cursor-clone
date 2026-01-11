@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 
 import { Id } from "@/convex/_generated/dataModel";
+import { EditorView } from "@/features/editor/components/editor-view";
 import { FileExplorer } from "@/features/projects/components/file-explorer";
 import { cn } from "@/lib/utils";
 
@@ -75,7 +76,9 @@ function ProjectIdView({ projectId }: { projectId: Id<"projects"> }) {
             >
               <FileExplorer projectId={projectId} />
             </Allotment.Pane>
-            <Allotment.Pane>Content</Allotment.Pane>
+            <Allotment.Pane>
+              <EditorView projectId={projectId} />
+            </Allotment.Pane>
           </Allotment>
         </div>
         <div

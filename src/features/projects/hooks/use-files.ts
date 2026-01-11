@@ -7,8 +7,8 @@ const useFiles = (projectId: Id<"projects">) => {
   return useQuery(api.files.getFiles, { projectId });
 };
 
-const useFile = (id: Id<"files">) => {
-  return useQuery(api.files.getFile, { id });
+const useFile = (id: Id<"files"> | null) => {
+  return useQuery(api.files.getFile, id ? { id } : "skip");
 };
 
 const useFolderContents = ({
@@ -46,14 +46,18 @@ const useUpdateFile = () => {
   return useMutation(api.files.updateFile);
 };
 
+const useFilePath = (id: Id<"files"> | null) => {
+  return useQuery(api.files.getFilePath, id ? { id } : "skip");
+};
+
 export {
   useCreateFile,
   useCreateFolder,
   useDeleteFile,
   useFile,
   useFiles,
+  useFilePath,
   useFolderContents,
   useRenameFile,
-  useUpdateFile
+  useUpdateFile,
 };
-

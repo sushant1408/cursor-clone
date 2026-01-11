@@ -16,6 +16,7 @@ import {
   useRenameFile,
 } from "@/features/projects/hooks/use-files";
 import { cn } from "@/lib/utils";
+import { useEditor } from "@/features/editor/hooks/use-editor";
 
 function Tree({
   item,
@@ -29,6 +30,8 @@ function Tree({
   const [isOpen, setIsOpen] = useState(false);
   const [isRenaming, setIsRenaming] = useState(false);
   const [creating, setCreating] = useState<"file" | "folder" | null>(null);
+
+  const { openFile, closeTab, activeTabId } = useEditor(projectId);
 
   const folderContents = useFolderContents({
     projectId,
@@ -68,6 +71,7 @@ function Tree({
 
   if (item.type === "file") {
     const fileName = item.name;
+    const isActive = activeTabId === item._id;
 
     if (isRenaming) {
       return (
@@ -85,10 +89,11 @@ function Tree({
       <TreeItemWrapper
         item={item}
         level={level}
-        isActive={false}
-        onClick={() => {}}
-        onDoubleClick={() => {}}
+        isActive={isActive}
+        onClick={() => openFile(item._id, { pinned: false })}
+        onDoubleClick={() => openFile(item._id, { pinned: true })}
         onDelete={() => {
+          closeTab(item._id);
           deleteFile({ id: item._id });
         }}
         onRename={() => setIsRenaming(true)}
@@ -184,9 +189,7 @@ function Tree({
         onClick={() => setIsOpen((prev) => !prev)}
         onCreateFile={() => startCreating("file")}
         onCreateFolder={() => startCreating("folder")}
-        onDelete={() => {
-          deleteFile({ id: item._id });
-        }}
+        onDelete={() => deleteFile({ id: item._id })}
         onRename={() => setIsRenaming(true)}
       >
         {folderTitleRow}
