@@ -8,6 +8,9 @@ import { getLanguageExtension } from "@/features/editor/extensions/language-exte
 import { minimap } from "@/features/editor/extensions/minimap";
 import { customTheme } from "@/features/editor/extensions/theme";
 import { customSetup } from "@/features/editor/extensions/custom-setup";
+import { suggestion } from "@/features/editor/extensions/suggestion";
+import { quickEdit } from "@/features/editor/extensions/quick-edits";
+import { selectionTooltip } from "@/features/editor/extensions/selection-tooltip";
 
 interface CodeEditorProps {
   fileName: string;
@@ -41,6 +44,9 @@ function CodeEditor({
         oneDark,
         customTheme,
         languageExtension,
+        suggestion(fileName),
+        quickEdit(fileName),
+        selectionTooltip(),
         keymap.of([indentWithTab]),
         minimap(),
         indentationMarkers(),
