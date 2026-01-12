@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import { Id } from "@/convex/_generated/dataModel";
 import { CodeEditor } from "@/features/editor/components/code-editor";
@@ -18,6 +18,14 @@ function EditorView({ projectId }: { projectId: Id<"projects"> }) {
 
   const isActiveFileBinary = activeFile && activeFile.storageId;
   const isActiveFileText = activeFile && !activeFile.storageId;
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="h-full flex flex-col">
