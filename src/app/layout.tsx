@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
+import "allotment/dist/style.css";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
