@@ -4,11 +4,12 @@ import { ProjectIdLayout } from "@/features/projects/components/project-id-layou
 export default async function Layout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ projectId: Id<"projects"> }>;
-}) {
+}: LayoutProps<"/projects/[projectId]">) {
   const { projectId } = await params;
 
-  return <ProjectIdLayout projectId={projectId}>{children}</ProjectIdLayout>;
+  return (
+    <ProjectIdLayout projectId={projectId as Id<"projects">}>
+      {children}
+    </ProjectIdLayout>
+  );
 }
