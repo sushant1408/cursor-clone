@@ -1,4 +1,4 @@
-import { google } from "@ai-sdk/google";
+import { anthropic } from "@ai-sdk/anthropic";
 import { auth } from "@clerk/nextjs/server";
 import { generateText, Output } from "ai";
 import { NextResponse } from "next/server";
@@ -47,8 +47,7 @@ export async function POST(request: Request) {
       .replace("{lineNumber}", lineNumber.toString());
 
     const { output } = await generateText({
-      model: google("gemini-3-pro-preview"),
-      // model: anthropic("claude-3-5-haiku-latest"),
+      model: anthropic("claude-3-5-haiku-latest"),
       output: Output.object({ schema: suggestionSchema }),
       prompt,
     });
