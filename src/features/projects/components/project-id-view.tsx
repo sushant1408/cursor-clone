@@ -7,6 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { Id } from "@/convex/_generated/dataModel";
 import { EditorView } from "@/features/editor/components/editor-view";
 import { FileExplorer } from "@/features/projects/components/file-explorer";
+import { PreviewView } from "@/features/projects/components/preview-view";
 import { cn } from "@/lib/utils";
 
 const MIN_SIDEBAR_WIDTH = 200;
@@ -87,7 +88,7 @@ function ProjectIdView({ projectId }: { projectId: Id<"projects"> }) {
             activeView === "preview" ? "visible" : "invisible",
           )}
         >
-          <div className="">Preview</div>
+          <PreviewView projectId={projectId} />
         </div>
       </div>
     </div>

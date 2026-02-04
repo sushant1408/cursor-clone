@@ -3,8 +3,8 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
-const useFiles = (projectId: Id<"projects">) => {
-  return useQuery(api.files.getFiles, { projectId });
+const useFiles = (projectId: Id<"projects"> | null) => {
+  return useQuery(api.files.getFiles, projectId ? { projectId } : "skip");
 };
 
 const useFile = (id: Id<"files"> | null) => {
