@@ -78,10 +78,15 @@ const useRenameProject = () => {
   );
 };
 
+const useUpdateProjectSettings = () => {
+  return useMutation(api.projects.updateSettings);
+};
+
 export {
   useCreateProject,
   useProject,
   useProjects,
   useProjectsPartial,
   useRenameProject,
+  useUpdateProjectSettings,
 };
