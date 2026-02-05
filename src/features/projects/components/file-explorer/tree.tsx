@@ -41,8 +41,8 @@ function Tree({
 
   const createFile = useCreateFile();
   const createFolder = useCreateFolder();
-  const renameFile = useRenameFile();
-  const deleteFile = useDeleteFile();
+  const renameFile = useRenameFile({ projectId, parentId: item._id });
+  const deleteFile = useDeleteFile({ projectId, parentId: item._id });
 
   const startCreating = (type: "file" | "folder") => {
     setIsOpen(true);
@@ -56,7 +56,7 @@ function Tree({
       return;
     }
 
-    renameFile({ id: item._id, name });
+    renameFile({ id: item._id, newName: name });
   };
 
   const handleCreate = (name: string) => {

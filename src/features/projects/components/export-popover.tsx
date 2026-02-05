@@ -8,7 +8,7 @@ import {
   XCircleIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FaGithub } from "react-icons/fa";
 import { toast } from "sonner";
@@ -68,11 +68,20 @@ function ExportPopover({ projectId }: ExportPopoverProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      repoName: project?.name?.replace(/[^a-zA-Z0-9._-]/g, "-") ?? "",
+      repoName: "",
       visibility: "private" as "public" | "private",
       description: "",
     },
   });
+
+  useEffect(() => {
+    if (project?.name) {
+      form.setValue(
+        "repoName",
+        project?.name?.replace(/[^a-zA-Z0-9._-]/g, "-"),
+      );
+    }
+  }, [project?.name]);
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -89,6 +98,17 @@ function ExportPopover({ projectId }: ExportPopoverProps) {
     } catch (error) {
       if (error instanceof HTTPError) {
         const body = await error.response.json<{ error: string }>();
+
+        if (body.error?.includes("Pro plan required")) {
+          toast.error("Upgrade to import repositories", {
+            action: {
+              label: "Upgrade",
+              onClick: () => openUserProfile(),
+            },
+          });
+          setOpen(false);
+          return;
+        }
 
         if (body.error?.includes("GitHub not connected")) {
           toast.error("Github account not connected", {
