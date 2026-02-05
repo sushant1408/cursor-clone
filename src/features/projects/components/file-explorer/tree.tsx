@@ -56,7 +56,7 @@ function Tree({
       return;
     }
 
-    renameFile({ id: item._id, name });
+    renameFile({ id: item._id, newName: name });
   };
 
   const handleCreate = (name: string) => {
