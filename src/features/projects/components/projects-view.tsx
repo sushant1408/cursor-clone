@@ -13,6 +13,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
+import { ImportGithubDialog } from "@/features/projects/components/import-github-dialog";
 import { ProjectsCommandDialog } from "@/features/projects/components/projects-command-dialog";
 import { ProjectsList } from "@/features/projects/components/projects-list";
 import { useCreateProject } from "@/features/projects/hooks/use-projects";
@@ -27,12 +28,18 @@ function ProjectsView() {
   const createProject = useCreateProject();
 
   const [commandDialogOpen, setCommandDialogOpen] = useState(false);
+  const [importDialogOpen, setImportDialogOpen] = useState(false);
 
   return (
     <>
       <ProjectsCommandDialog
         open={commandDialogOpen}
         onOpenChange={setCommandDialogOpen}
+      />
+
+      <ImportGithubDialog
+        open={importDialogOpen}
+        onOpenChange={setImportDialogOpen}
       />
 
       <div className="min-h-screen bg-sidebar flex flex-col items-center justify-center p-6 md:p-16">
@@ -79,7 +86,7 @@ function ProjectsView() {
               </Button>
               <Button
                 variant="outline"
-                onClick={() => {}}
+                onClick={() => setImportDialogOpen(true)}
                 className="h-full items-start justify-start p-4 bg-background flex flex-col gap-6 rounded-none"
               >
                 <div className="flex items-center justify-between w-full">

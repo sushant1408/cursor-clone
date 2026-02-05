@@ -105,12 +105,12 @@ function PreviewSettingsPopover({
               name="installCommand"
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="form-installCommand">
+                  <FieldLabel htmlFor="form-preview-settings-installCommand">
                     Install Command
                   </FieldLabel>
                   <Input
                     {...field}
-                    id="form-installCommand"
+                    id="form-preview-settings-installCommand"
                     aria-invalid={fieldState.invalid}
                     placeholder="npm install"
                   />
@@ -129,12 +129,12 @@ function PreviewSettingsPopover({
               name="devCommand"
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="form-devCommand">
+                  <FieldLabel htmlFor="form-preview-settings-devCommand">
                     Start Command
                   </FieldLabel>
                   <Input
                     {...field}
-                    id="form-devCommand"
+                    id="form-preview-settings-devCommand"
                     aria-invalid={fieldState.invalid}
                     placeholder="npm run dev"
                   />
