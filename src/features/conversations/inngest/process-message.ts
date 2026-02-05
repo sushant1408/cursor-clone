@@ -66,7 +66,7 @@ export const processMessage = inngest.createFunction(
 
     if (!internalKey) {
       throw new NonRetriableError(
-        "POLARIS_CONVEX_INTERNAL_KEY is not configured",
+        "CONVEX_INTERNAL_KEY is not configured",
       );
     }
 
