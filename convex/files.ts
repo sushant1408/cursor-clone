@@ -210,7 +210,7 @@ export const createFolder = mutation({
 export const renameFile = mutation({
   args: {
     id: v.id("files"),
-    name: v.string(),
+    newName: v.string(),
   },
   handler: async (ctx, args) => {
     const identity = await verifyAuth(ctx);
@@ -241,21 +241,21 @@ export const renameFile = mutation({
 
     const existingSibling = siblings.find(
       (sibling) =>
-        sibling.name === args.name &&
+        sibling.name === args.newName &&
         sibling.type === file.type &&
         sibling._id !== args.id,
     );
 
     if (existingSibling) {
       throw new Error(
-        `A file of folder ${args.name} already exists at this location. Please choose a different name.`,
+        `A file of folder ${args.newName} already exists at this location. Please choose a different name.`,
       );
     }
 
     const now = Date.now();
 
     await ctx.db.patch("files", args.id, {
-      name: args.name,
+      name: args.newName,
       updatedAt: now,
     });
 
